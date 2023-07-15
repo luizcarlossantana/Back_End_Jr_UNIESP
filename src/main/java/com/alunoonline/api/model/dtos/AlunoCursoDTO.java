@@ -13,8 +13,4 @@ public class AlunoCursoDTO {
     private String curso;
 
 
-    public AlunoCursoDTO( @NotNull Aluno aluno){
-        this.nome = aluno.getNome();
-        this.curso = aluno.getCurso();
-    }
 }

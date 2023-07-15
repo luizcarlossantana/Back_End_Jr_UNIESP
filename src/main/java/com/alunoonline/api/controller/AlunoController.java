@@ -2,8 +2,10 @@ package com.alunoonline.api.controller;
 
 import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.model.dtos.AlunoCursoDTO;
+import com.alunoonline.api.model.dtos.AlunoDTO;
 import com.alunoonline.api.service.AlunoService;
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,10 +22,13 @@ public class AlunoController {
     @Autowired
     AlunoService service;
 
+    @Autowired
+    ModelMapper modelMapper;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Aluno> create(@RequestBody @Valid Aluno aluno){
-        Aluno alunoCreated = service.create(aluno);
+    public ResponseEntity<AlunoDTO> create(@RequestBody @Valid AlunoDTO aluno){
+        AlunoDTO alunoCreated = service.create(aluno);
 
         return ResponseEntity.status(201).body(alunoCreated);
     }
@@ -66,9 +71,12 @@ public class AlunoController {
 
     }
 
-@GetMapping("/curso-nome/{id}")
-    public ResponseEntity<AlunoCursoDTO>obterNomeCursoAluno(@PathVariable Long id){
-        AlunoCursoDTO alunoDTO = new AlunoCursoDTO(service.findById(id).get());
-                return ResponseEntity.ok(alunoDTO);
+    @GetMapping("/curso-nome/{id}")
+    public ResponseEntity<AlunoCursoDTO>
+    obterNomeCursoAluno(@PathVariable long id){
+
+        AlunoCursoDTO alunoDTO = service.buscarPorId(id);
+        return ResponseEntity.ok(alunoDTO);
+
     }
 }
