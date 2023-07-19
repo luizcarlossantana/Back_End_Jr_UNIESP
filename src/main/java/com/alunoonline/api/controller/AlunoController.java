@@ -4,6 +4,7 @@ import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.model.dtos.AlunoCursoDTO;
 import com.alunoonline.api.model.dtos.AlunoDTO;
 import com.alunoonline.api.service.AlunoService;
+import com.alunoonline.api.validator.NomeValidation;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.alunoonline.api.model;
 
+import com.alunoonline.api.validator.NomeValidation;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
